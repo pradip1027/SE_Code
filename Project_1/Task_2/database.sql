@@ -1,0 +1,12 @@
+CREATE DATABASE IF NOT EXISTS student_management;
+USE student_management;
+
+CREATE TABLE IF NOT EXISTS students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    enrolment_no VARCHAR(20) NOT NULL UNIQUE,
+    name VARCHAR(100) NOT NULL,
+    branch VARCHAR(50) NOT NULL,
+    sem INT NOT NULL,
+    cgpa DECIMAL(4, 2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

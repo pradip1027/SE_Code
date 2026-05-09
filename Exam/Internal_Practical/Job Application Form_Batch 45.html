@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Application Form</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 40px;
+            text-align: center;
+        }
+        form {
+            display: inline-block;
+            text-align: left;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+
+    <script>
+        function validateForm() {
+
+            let fullname = document.querySelector("input[name='fullname']").value;
+            let experience = document.querySelector("input[name='experience']").value;
+            let salary = document.querySelector("input[name='salary']").value;
+            let skills = document.querySelectorAll("input[name='skills']:checked");
+            let resume = document.querySelector("input[name='resume']").value;
+
+            let fullnameError = document.querySelector(".fullnameError");
+            let experienceError = document.querySelector(".experienceError");
+            let salaryError = document.querySelector(".salaryError");
+            let skillsError = document.querySelector(".skillsError");
+            let resumeError = document.querySelector(".resumeError");
+
+            let valid = true;
+
+            // Reset errors
+            fullnameError.textContent = "";
+            experienceError.textContent = "";
+            salaryError.textContent = "";
+            skillsError.textContent = "";
+            resumeError.textContent = "";
+
+            // Full Name validation (Only alphabets and spaces)
+            if (fullname.trim() === "") {
+                fullnameError.textContent = "Full Name cannot be empty";
+                valid = false;
+            } else if (!/^[A-Za-z\s]+$/.test(fullname)) {
+                fullnameError.textContent = "Full Name must contain only alphabets and spaces";
+                valid = false;
+            }
+
+            // Experience validation (0–20 years)
+            if (experience.trim() === "") {
+                experienceError.textContent = "Experience cannot be empty";
+                valid = false;
+            } else if (!/^(?:[0-9]|1[0-9]|20)$/.test(experience)) {
+                experienceError.textContent = "Experience must be between 0 to 20 years";
+                valid = false;
+            }
+
+            // Salary validation (Minimum 10000)
+            if (salary.trim() === "") {
+                salaryError.textContent = "Expected Salary cannot be empty";
+                valid = false;
+            } else if (parseInt(salary) < 10000) {
+                salaryError.textContent = "Expected Salary must be at least 10000";
+                valid = false;
+            }
+
+            // Skills validation (Minimum 2 skills required)
+            if (skills.length < 2) {
+                skillsError.textContent = "Select at least 2 skills";
+                valid = false;
+            }
+
+            // Resume validation (Mandatory file upload)
+            if (resume === "") {
+                resumeError.textContent = "Please upload your resume";
+                valid = false;
+            }
+
+            return valid;
+        }
+    </script>
+</head>
+
+<body>
+
+<h2>Job Application Form</h2>
+
+<form onsubmit="return validateForm()">
+
+    Full Name:
+    <input type="text" name="fullname">
+    <div class="error fullnameError"></div>
+    <br>
+
+    Experience (Years 0-20):
+    <input type="text" name="experience">
+    <div class="error experienceError"></div>
+    <br>
+
+    Expected Salary:
+    <input type="number" name="salary">
+    <div class="error salaryError"></div>
+    <br>
+
+    Skills:
+    <br>
+    <input type="checkbox" name="skills" value="Python"> Python
+    <input type="checkbox" name="skills" value="Java"> Java
+    <input type="checkbox" name="skills" value="Testing"> Testing
+    <input type="checkbox" name="skills" value="SQL"> SQL
+    <div class="error skillsError"></div>
+    <br><br>
+
+    Upload Resume:
+    <input type="file" name="resume">
+    <div class="error resumeError"></div>
+    <br><br>
+
+    <button type="submit">Apply</button>
+
+</form>
+
+</body>
+</html>
