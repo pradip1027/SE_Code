@@ -8,7 +8,7 @@ try:
 	print("Page title was '{}'".format(browser.title))
 	text = browser.find_element(By.NAME, 'q')
 	text.send_keys("iphone")
-	print(text.text)
+	print(text.get_attribute("value"))
 	text.send_keys(Keys.ENTER)
 	time.sleep(30)
 
