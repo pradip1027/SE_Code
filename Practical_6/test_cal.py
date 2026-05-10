@@ -40,7 +40,7 @@ class MyTestClass(unittest.TestCase):
         self.assertEqual(sub(-3, -5), 2)
 
     def test_divide(self):
-        self.assertEqual(divide(4, 0), 2)
+        self.assertEqual(divide(4, 2), 2)
 
     def test_divide_by_zero(self):
         self.assertRaises(ValueError, divide, 10, 0)

@@ -21,8 +21,8 @@ def full_name_field_validation():
     case_ans = True
     full_name = browser.find_element(By.ID, "user_full_name")
     full_name.clear()
-    full_name.send_keys("Pradip Parmar")
-    if full_name.get_attribute("value") == "Pradip Parmar":
+    full_name.send_keys("Pradip")
+    if full_name.get_attribute("value") == "Pradip":
         case_ans = True
     else:
         case_ans = False
@@ -130,3 +130,6 @@ class TestBrowserStackSignUp(unittest.TestCase):
     def test_signup_page_url(self):
         result = signup_page_url()
         self.assertTrue(result, "FAILED: Current URL does not contain 'browserstack.com/users/login' - page is on sign_up not login")
+
+if __name__ == "__main__":
+    unittest.main()
